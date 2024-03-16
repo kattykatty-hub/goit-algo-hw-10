@@ -13,18 +13,14 @@ sugar_constraint = lemonade <= 50
 lemon_juice_constraint = lemonade <= 30
 fruit_puree_constraint = 2 * fruit_juice <= 40
 
-# Додаємо обмеження на кількість продуктів
-product_constraint = lemonade + fruit_juice
-
 # Додаємо обмеження до моделі
 model += water_constraint, "water_constraint"
 model += sugar_constraint, "sugar_constraint"
 model += lemon_juice_constraint, "lemon_juice_constraint"
 model += fruit_puree_constraint, "fruit_puree_constraint"
-model += product_constraint, "product_constraint"
 
-# Функція максимізації
-model += lemonade + fruit_juice
+# Функція максимізації - загальна кількість продуктів
+model += lemonade + fruit_juice, "total_products"
 
 # Розв'язуємо модель
 model.solve()
